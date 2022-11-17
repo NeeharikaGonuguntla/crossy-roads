@@ -12,7 +12,7 @@ cabal-version:       >=1.10
 executable crossy-roads
   main-is:             Main.hs
   build-depends:       base >=4.9, 
-                       random >=1.1 && <1.2,
+                       random >=1.1,
                        containers,
                        vty, 
                        brick
