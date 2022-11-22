@@ -4,6 +4,9 @@ data Coord = Coord { row :: Int
                    , col :: Int
                    } deriving Show
 
+initCoord :: Coord
+initCoord = Coord {row = 0, col = dim `div` 2}
+
 dim :: Int
 dim = 21
 

@@ -13,7 +13,11 @@ data State = MainMenu
 data CrossyRoad = CrossyRoad { chicken  :: Coord
                              , state    :: State
                              , maxScore :: Int
+                             , curScore :: Int
                              } deriving Show
 
 initGame :: CrossyRoad
-initGame = CrossyRoad {chicken = Coord {row = 0, col = dim `div` 2}, state = MainMenu, maxScore = 0}
+initGame = CrossyRoad { chicken  = initCoord
+                      , state    = MainMenu
+                      , maxScore = 0
+                      , curScore = 0}
