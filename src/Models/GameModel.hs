@@ -64,6 +64,31 @@ initCars = [
             Coord {row = 20, col = getIOInt(chooseInt 0 (dim-1))},
             Coord {row = 20, col = getIOInt(chooseInt 0 (dim-1))}]
 
+initGrass :: [Coord]
+initGrass = [
+            Coord {row = 5, col = 0},
+            Coord {row = 5, col = 1},
+            Coord {row = 5, col = 2},
+            Coord {row = 5, col = 3},
+            Coord {row = 5, col = 4},
+            Coord {row = 5, col = 5},
+            Coord {row = 5, col = 6},
+            Coord {row = 5, col = 7},
+            Coord {row = 5, col = 8},
+            Coord {row = 5, col = 9},
+            Coord {row = 5, col = 10},
+            Coord {row = 5, col = 11},
+            Coord {row = 5, col = 12},
+            Coord {row = 5, col = 13},
+            Coord {row = 5, col = 14},
+            Coord {row = 5, col = 15},
+            Coord {row = 5, col = 16},
+            Coord {row = 5, col = 17},
+            Coord {row = 5, col = 18},
+            Coord {row = 5, col = 19},
+            Coord {row = 5, col = 20}
+            ]
+
 dim :: Int
 dim = 21
 

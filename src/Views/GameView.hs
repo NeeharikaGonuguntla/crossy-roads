@@ -21,9 +21,11 @@ makeCell :: CrossyRoad -> Int -> Int -> Widget n
 makeCell g r c
   | row (chicken g) == r && col (chicken g) == c = center chickenCell
   | any (\x -> row x == r && col x == c) (carPos g) = center carCell 
+  | any (\x -> row x == r && col x == c) (grass g) = center grassCell 
   | otherwise                                    = center blankCell
 
 chickenCell, blankCell:: Widget n
 chickenCell = vBox [ str "🐔" ]
 blankCell = vBox [ str " " ]
 carCell = vBox [ str "🚗" ]
+grassCell = vBox [str "🎄"]

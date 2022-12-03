@@ -61,7 +61,11 @@ move :: (Coord -> Coord) -> CrossyRoad -> CrossyRoad
 move dir g = g { chicken = dir (chicken g) }
 
 updateScore :: CrossyRoad -> CrossyRoad
-updateScore g = g { curScore = row(chicken g) }
+updateScore g = g { 
+                    curScore = row(chicken g),
+                    maxScore = max (maxScore g) (curScore g)
+                  }
+
 
 mainFunction :: CrossyRoad -> CrossyRoad
 mainFunction g = updateScore ( moveCar (checkChicken g))
