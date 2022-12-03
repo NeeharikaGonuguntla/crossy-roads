@@ -6,6 +6,8 @@ import qualified Brick.Types as T
 
 import Models.GameModel
 import CrossyRoad
+import System.IO.Unsafe
+import System.Random
 
 control :: CrossyRoad -> BrickEvent n Tick -> EventM n (Next CrossyRoad)
 control g ev = case state g of
@@ -64,8 +66,11 @@ updateScore g = g { curScore = row(chicken g) }
 mainFunction :: CrossyRoad -> CrossyRoad
 mainFunction g = updateScore ( moveCar (checkChicken g))
 
+getInt :: IO Int -> Int
+getInt x = unsafePerformIO x
+
 moveCar :: CrossyRoad -> CrossyRoad
-moveCar g = g { carPos = [ Coord {row = row x, col = (col x + 1) `mod` dim} | x <- carPos g] }
+moveCar g = g { carPos = [ Coord {row = row x, col = ((col x + getInt(randomRIO (0,1))) `mod` dim)} | x <- carPos g] }
 
 checkChicken :: CrossyRoad -> CrossyRoad
 checkChicken g = do

@@ -1,4 +1,6 @@
 module Models.GameModel where
+import System.IO.Unsafe
+import System.Random
 
 data Coord = Coord { row :: Int
                    , col :: Int
@@ -7,18 +9,60 @@ data Coord = Coord { row :: Int
 initCoord :: Coord
 initCoord = Coord {row = 0, col = dim `div` 2}
 
-initCar :: Coord
-initCar = Coord {row = 1, col = dim `div` 2}
+-- Function to generate a random integer between a and b
+chooseInt :: Int -> Int -> IO Int
+chooseInt a b = randomRIO (a, b)
+
+-- Function to convert IO Int to Int
+getIOInt :: IO Int -> Int
+getIOInt x = unsafePerformIO x
 
 initCars :: [Coord]
 initCars = [
-            Coord {row = 4, col = dim `div` 2},
-            Coord {row = 5, col = dim `div` 3},
-            Coord {row = 6, col = dim `div` 4},
-            Coord {row = 7, col = dim `div` 5},
-            Coord {row = 8, col = dim `div` 6},
-            Coord {row = 9, col = dim `div` 2},
-            Coord {row = 10, col = dim `div` 3}]
+            Coord {row = 1, col = getIOInt (chooseInt 0 (dim-1))},
+            Coord {row = 2, col = getIOInt (chooseInt 0 (dim-1))},
+            Coord {row = 3, col = getIOInt (chooseInt 0 (dim-1))},
+            Coord {row = 4, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 6, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 6, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 7, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 7, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 8, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 8, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 9, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 9, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 11, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 11, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 11, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 12, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 12, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 12, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 13, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 13, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 13, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 14, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 14, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 14, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 16, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 16, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 16, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 16, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 17, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 17, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 17, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 17, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 18, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 18, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 18, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 18, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 19, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 19, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 19, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 19, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 20, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 20, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 20, col = getIOInt(chooseInt 0 (dim-1))},
+            Coord {row = 20, col = getIOInt(chooseInt 0 (dim-1))}]
 
 dim :: Int
 dim = 21

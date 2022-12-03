@@ -7,7 +7,6 @@ import Brick.Widgets.Center (center)
 import CrossyRoad
 import Models.GameModel
 import Views.ViewHelper
-import System.Random -- (Random(randomRIO))
 
 gameView :: CrossyRoad -> [Widget String]
 gameView g = [gameView' g]
@@ -27,4 +26,4 @@ makeCell g r c
 chickenCell, blankCell:: Widget n
 chickenCell = vBox [ str "🐔" ]
 blankCell = vBox [ str " " ]
-carCell = vBox [ str " 🚗  " ]
+carCell = vBox [ str "🚗" ]
