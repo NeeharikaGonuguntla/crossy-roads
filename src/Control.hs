@@ -23,7 +23,7 @@ mainMenuControl g ev = case ev of
 
 gameControl :: CrossyRoad -> BrickEvent n Tick -> EventM n (Next CrossyRoad)
 gameControl g ev = case ev of 
-  AppEvent Tick                        -> Brick.continue (moveCar g)-- This should be updated to update traffic in the roads
+  AppEvent Tick                        -> Brick.continue (mainFunction g)-- This should be updated to update traffic in the roads
   T.VtyEvent (V.EvKey V.KLeft _)       -> Brick.continue (move left  g)
   T.VtyEvent (V.EvKey V.KRight _)      -> Brick.continue (move right g)
   T.VtyEvent (V.EvKey V.KUp   _)       -> Brick.continue (move up    g)
@@ -58,7 +58,18 @@ changeState s g = g { state = s }
 move :: (Coord -> Coord) -> CrossyRoad -> CrossyRoad
 move dir g = g { chicken = dir (chicken g) }
 
--- Write a function to move the carCell from left to right
+mainFunction :: CrossyRoad -> CrossyRoad
+mainFunction g = moveCar (checkChicken g)
+
 moveCar :: CrossyRoad -> CrossyRoad
 moveCar g = g { carPos = [ Coord {row = row x, col = (col x + 1) `mod` dim} | x <- carPos g] }
+
+checkChicken :: CrossyRoad -> CrossyRoad
+checkChicken g = do
+  if any (\x -> row x == row(chicken g) && col x == col(chicken g)) (carPos g) 
+    then changeState GameOver g
+    else g
+  
+  
+
 
