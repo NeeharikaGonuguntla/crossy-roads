@@ -7,6 +7,19 @@ data Coord = Coord { row :: Int
 initCoord :: Coord
 initCoord = Coord {row = 0, col = dim `div` 2}
 
+initCar :: Coord
+initCar = Coord {row = 1, col = dim `div` 2}
+
+initCars :: [Coord]
+initCars = [
+            Coord {row = 4, col = dim `div` 2},
+            Coord {row = 5, col = dim `div` 3},
+            Coord {row = 6, col = dim `div` 4},
+            Coord {row = 7, col = dim `div` 5},
+            Coord {row = 8, col = dim `div` 6},
+            Coord {row = 9, col = dim `div` 2},
+            Coord {row = 10, col = dim `div` 3}]
+
 dim :: Int
 dim = 21
 

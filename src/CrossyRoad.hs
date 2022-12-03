@@ -11,6 +11,7 @@ data State = MainMenu
     deriving (Show, Eq)
 
 data CrossyRoad = CrossyRoad { chicken  :: Coord
+                             , carPos :: [Coord]
                              , state    :: State
                              , maxScore :: Int
                              , curScore :: Int
@@ -18,6 +19,7 @@ data CrossyRoad = CrossyRoad { chicken  :: Coord
 
 initGame :: CrossyRoad
 initGame = CrossyRoad { chicken  = initCoord
+                      , carPos = initCars
                       , state    = MainMenu
                       , maxScore = 0
                       , curScore = 0}
