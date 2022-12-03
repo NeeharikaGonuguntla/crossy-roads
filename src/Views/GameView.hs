@@ -8,11 +8,38 @@ import CrossyRoad
 import Models.GameModel
 import Views.ViewHelper
 
+import Brick.Widgets.Border as B
+import Brick.Widgets.Border.Style as BS
+import Brick.Widgets.Center as C
+
+drawScore :: CrossyRoad -> Int -> Widget String
+drawScore g n = withBorderStyle BS.unicodeBold
+ $ B.borderWithLabel (str " score ")
+ $ C.hCenter
+ $ padAll 1
+ $ str $ show n 
+
+drawMaxScore :: CrossyRoad -> Int -> Widget String
+drawMaxScore g n = withBorderStyle BS.unicodeBold
+ $ B.borderWithLabel (str "Max score")
+ $ C.hCenter
+ $ padAll 1
+ $ str $ show n 
+
+drawCurScoreStats :: CrossyRoad -> Widget String
+drawCurScoreStats g = hLimit 11
+ $ vBox [ drawScore g curScore | curScore <- [curScore g]]
+
+drawMaxStats :: CrossyRoad -> Widget String
+drawMaxStats g = hLimit 11
+ $ vBox [ drawMaxScore g maxScore | maxScore <- [maxScore g]]
+
 gameView :: CrossyRoad -> [Widget String]
 gameView g = [gameView' g]
 
 gameView' :: CrossyRoad -> Widget String
-gameView' g = createWindow (vTile [ makeRow g row | row <- reverse [0..dim-1] ])
+gameView' g =  vBox [drawCurScoreStats g, drawMaxStats g] <+> createWindow (vTile [ makeRow g row | row <- reverse [0..dim-1] ]) 
+
 
 makeRow :: CrossyRoad -> Int -> Widget n
 makeRow g row = hTile [ makeCell g row col | col <- [0..dim-1] ]

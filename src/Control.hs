@@ -74,12 +74,12 @@ getInt :: IO Int -> Int
 getInt x = unsafePerformIO x
 
 moveCar :: CrossyRoad -> CrossyRoad
-moveCar g = g { carPos = [ Coord {row = row x, col = ((col x + getInt(randomRIO (0,1))) `mod` dim)} | x <- carPos g] }
+moveCar g = g { carPos = [ Coord {row = row x, col = ((col x - getInt(randomRIO (0,1))) `mod` dim)} | x <- carPos g] }
 
 checkChicken :: CrossyRoad -> CrossyRoad
 checkChicken g = do
   if any (\x -> row x == row(chicken g) && col x == col(chicken g)) (carPos g) 
-    then changeState GameOver g
+    then changeState GameOver (updateScore g)
     else g
   
   
