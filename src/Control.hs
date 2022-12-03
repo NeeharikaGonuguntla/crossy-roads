@@ -58,8 +58,11 @@ changeState s g = g { state = s }
 move :: (Coord -> Coord) -> CrossyRoad -> CrossyRoad
 move dir g = g { chicken = dir (chicken g) }
 
+updateScore :: CrossyRoad -> CrossyRoad
+updateScore g = g { curScore = row(chicken g
+
 mainFunction :: CrossyRoad -> CrossyRoad
-mainFunction g = moveCar (checkChicken g)
+mainFunction g = updateScore ( moveCar (checkChicken g))
 
 moveCar :: CrossyRoad -> CrossyRoad
 moveCar g = g { carPos = [ Coord {row = row x, col = (col x + 1) `mod` dim} | x <- carPos g] }
