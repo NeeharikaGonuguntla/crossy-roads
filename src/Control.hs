@@ -52,7 +52,7 @@ gameOverControl g ev = case ev of
   _                               -> Brick.continue g
 
 resetInitPosition :: CrossyRoad -> CrossyRoad
-resetInitPosition g = g { chicken = initCoord}
+resetInitPosition g = g { chicken = initCoord, iterations = 0}
 
 resetPosition :: CrossyRoad -> CrossyRoad
 resetPosition g = g { chicken = initCoord, iterations = iterations g+1}

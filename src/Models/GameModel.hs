@@ -86,7 +86,28 @@ initGrass = [
             Coord {row = 5, col = 17},
             Coord {row = 5, col = 18},
             Coord {row = 5, col = 19},
-            Coord {row = 5, col = 20}
+            Coord {row = 5, col = 20},
+            Coord {row = 10, col = 0},
+            Coord {row = 10, col = 1},
+            Coord {row = 10, col = 2},
+            Coord {row = 10, col = 3},
+            Coord {row = 10, col = 4},
+            Coord {row = 10, col = 5},
+            Coord {row = 10, col = 6},
+            Coord {row = 10, col = 7},
+            Coord {row = 10, col = 8},
+            Coord {row = 10, col = 9},
+            Coord {row = 10, col = 10},
+            Coord {row = 10, col = 11},
+            Coord {row = 10, col = 12},
+            Coord {row = 10, col = 13},
+            Coord {row = 10, col = 14},
+            Coord {row = 10, col = 15},
+            Coord {row = 10, col = 16},
+            Coord {row = 10, col = 17},
+            Coord {row = 10, col = 18},
+            Coord {row = 10, col = 19},
+            Coord {row = 10, col = 20}
             ]
 
 dim :: Int
