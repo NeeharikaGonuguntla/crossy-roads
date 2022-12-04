@@ -52,7 +52,10 @@ gameOverControl g ev = case ev of
   _                               -> Brick.continue g
 
 resetInitPosition :: CrossyRoad -> CrossyRoad
-resetInitPosition g = g { chicken = initCoord }
+resetInitPosition g = g { chicken = initCoord}
+
+resetPosition :: CrossyRoad -> CrossyRoad
+resetPosition g = g { chicken = initCoord, iterations = iterations g+1}
 
 changeState :: State -> CrossyRoad -> CrossyRoad
 changeState s g = g { state = s }
@@ -62,10 +65,9 @@ move dir g = g { chicken = dir (chicken g) }
 
 updateScore :: CrossyRoad -> CrossyRoad
 updateScore g = g { 
-                    curScore = row(chicken g),
+                    curScore = (iterations g)*dim + row(chicken g),
                     maxScore = max (maxScore g) (curScore g)
                   }
-
 
 mainFunction :: CrossyRoad -> CrossyRoad
 mainFunction g = updateScore ( moveCar (checkChicken g))
@@ -80,8 +82,5 @@ checkChicken :: CrossyRoad -> CrossyRoad
 checkChicken g = do
   if any (\x -> row x == row(chicken g) && col x == col(chicken g)) (carPos g) 
     then changeState GameOver (updateScore g)
-    else g
-  
-  
-
-
+  else if (row(chicken g) == dim-1) then resetPosition(g) 
+  else g

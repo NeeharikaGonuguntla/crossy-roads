@@ -16,6 +16,7 @@ data CrossyRoad = CrossyRoad { chicken  :: Coord
                              , state    :: State
                              , maxScore :: Int
                              , curScore :: Int
+                             , iterations :: Int
                              } deriving Show
 
 initGame :: Int -> CrossyRoad
@@ -24,4 +25,6 @@ initGame ms = CrossyRoad { chicken  = initCoord
                       , grass = initGrass
                       , state    = MainMenu
                       , maxScore = ms
-                      , curScore = 0}
+                      , curScore = 0
+                      , iterations = 0
+                      }

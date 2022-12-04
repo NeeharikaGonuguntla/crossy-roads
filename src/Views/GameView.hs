@@ -14,31 +14,32 @@ import Brick.Widgets.Center as C
 
 drawScore :: CrossyRoad -> Int -> Widget String
 drawScore g n = withBorderStyle BS.unicodeBold
- $ B.borderWithLabel (str " score ")
+ $ B.borderWithLabel (str " Score/maxScore ")
  $ C.hCenter
  $ padAll 1
- $ str $ show n 
+ $ str $ show n ++" /"++show (maxScore g) 
 
-drawMaxScore :: CrossyRoad -> Int -> Widget String
-drawMaxScore g n = withBorderStyle BS.unicodeBold
- $ B.borderWithLabel (str "Max score")
- $ C.hCenter
- $ padAll 1
- $ str $ show n 
+-- drawMaxScore :: CrossyRoad -> Int -> Widget String
+-- drawMaxScore g n = withBorderStyle BS.unicodeBold
+--  $ B.borderWithLabel (str "Max score")
+--  $ C.hCenter
+--  $ padAll 1
+--  $ str $ show n 
 
 drawCurScoreStats :: CrossyRoad -> Widget String
-drawCurScoreStats g = hLimit 11
+drawCurScoreStats g = hLimit 20
  $ vBox [ drawScore g curScore | curScore <- [curScore g]]
 
-drawMaxStats :: CrossyRoad -> Widget String
-drawMaxStats g = hLimit 11
- $ vBox [ drawMaxScore g maxScore | maxScore <- [maxScore g]]
+-- drawMaxStats :: CrossyRoad -> Widget String
+-- drawMaxStats g = hLimit 11
+--  $ vBox [ drawMaxScore g maxScore | maxScore <- [maxScore g]]
 
 gameView :: CrossyRoad -> [Widget String]
 gameView g = [gameView' g]
 
 gameView' :: CrossyRoad -> Widget String
-gameView' g =  vBox [drawCurScoreStats g, drawMaxStats g] <+> createWindow (vTile [ makeRow g row | row <- reverse [0..dim-1] ]) 
+-- gameView' g =  vBox [drawCurScoreStats g, drawMaxStats g] <+> createWindow (vTile [ makeRow g row | row <- reverse [0..dim-1] ]) 
+gameView' g =  drawCurScoreStats g <+> createWindow (vTile [ makeRow g row | row <- reverse [0..dim-1] ]) 
 
 
 makeRow :: CrossyRoad -> Int -> Widget n

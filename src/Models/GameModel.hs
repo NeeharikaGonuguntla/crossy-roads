@@ -90,7 +90,7 @@ initGrass = [
             ]
 
 dim :: Int
-dim = 21
+dim = 15
 
 up :: Coord -> Coord 
 up p = p 
