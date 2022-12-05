@@ -82,5 +82,5 @@ checkChicken :: CrossyRoad -> CrossyRoad
 checkChicken g = do
   if any (\x -> row x == row(chicken g) && col x == col(chicken g)) (carPos g) 
     then changeState GameOver (updateScore g)
-  else if (row(chicken g) == dim-1) then resetPosition(g) 
-  else g
+    else if (row(chicken g) == dim-1) then resetPosition(g) 
+    else g

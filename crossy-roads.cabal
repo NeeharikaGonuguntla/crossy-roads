@@ -33,7 +33,21 @@ executable crossy-roads
 test-suite tests
   default-language: Haskell98
   type:              exitcode-stdio-1.0
-  hs-source-dirs:    tests
+  hs-source-dirs:    src,tests
   ghc-options:       -W -threaded
   main-is:           Test.hs
-  build-depends:     base >=4.9, process
+  build-depends:     base >=4.9, process, HUnit,
+                       random >=1.1,
+                       containers,
+                       vty, 
+                       brick
+  other-modules:       Control
+                       View
+                       Models.GameModel
+                       Views.GameView
+                       Views.MainMenuView
+                       Views.PausedView
+                       Views.GameOverView
+                       Views.ViewHelper
+                        CrossyRoad 
+                        GameViewTest
