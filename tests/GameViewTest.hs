@@ -25,35 +25,35 @@ testGameState = TestCase (assertEqual "for (updateScore g 1),"
 
 -- Test cases for updateScore
 new_g = g {maxScore = 26, state = Game}
-testUpdateScore1 = TestCase (assertEqual "for (updateScore g)," 
+testUpdateScore1 = TestCase (assertEqual "CurrScoreDefaultIterationTest, " 
     (curScore (updateScore g {chicken = Coord{row = 10, col = 9}})) (10))
 
-testUpdateScore2 = TestCase (assertEqual "for (updateScore g)," 
+testUpdateScore2 = TestCase (assertEqual "CurrScoreSecondIterationTest, " 
     (curScore (updateScore g {chicken = Coord{row = 11, col = 12}, iterations=1})) (26))
 
-testUpdateScore3 = TestCase (assertEqual "for (updateScore g)," 
+testUpdateScore3 = TestCase (assertEqual "HighScoreFirstIterationTest, " 
     (maxScore (updateScore new_g {chicken = Coord{row = 6, col = 7}, iterations=0})) (26))
 
 -- Test cases for Game state
-testGameState2 = TestCase (assertEqual "for (updateScore g 1)," 
+testGameState2 = TestCase (assertEqual "GameViewTest, " 
     (state new_g)(Game))
 
 -- Test cases for checkChicken
-testCheckChicken1 = TestCase (assertEqual "for (checkChicken g)," 
+testCheckChicken1 = TestCase (assertEqual "ChickenCollidesCarTest, " 
     (row (chicken (checkChicken g {chicken = Coord{row = 10, col = 9}})), 
     col (chicken (checkChicken g {chicken = Coord{row = 10, col = 9}}))) 
     (row(Coord{row = 10, col = 9}), col(Coord{row = 10, col = 9})))
 
 -- Test cases for changeState
-testChangeState1 = TestCase (assertEqual "for (changeState g),"
+testChangeState1 = TestCase (assertEqual "ChangeStateTest,"
         (state(changeState GameOver g )) (GameOver))
 
 -- Test cases for grassCell
-testGrassCell = TestCase (assertEqual "for (grassPosition g),"
+testGrassCell = TestCase (assertEqual "GrassPositionTest,"
         (row(head initGrass)) (5))
 
 -- Test cases for carCell
-testCarCell = TestCase (assertEqual "for (carPosition g),"
+testCarCell = TestCase (assertEqual "CarCellTest,"
         (row(head initCars)) (1))
 
 
