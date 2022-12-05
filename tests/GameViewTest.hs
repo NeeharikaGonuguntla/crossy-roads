@@ -20,10 +20,15 @@ import Control
 g = initGame 0
 
 -- Test cases for updateScore
+new_g = g {maxScore = 26}
 testUpdateScore1 = TestCase (assertEqual "for (updateScore g)," 
     (curScore (updateScore g {chicken = Coord{row = 10, col = 9}})) (10))
+
 testUpdateScore2 = TestCase (assertEqual "for (updateScore g)," 
-    (curScore (updateScore g {chicken = Coord{row = 11, col = 9}, iterations=1})) (26))
+    (curScore (updateScore g {chicken = Coord{row = 11, col = 12}, iterations=1})) (26))
+
+testUpdateScore3 = TestCase (assertEqual "for (updateScore g)," 
+    (maxScore (updateScore new_g {chicken = Coord{row = 6, col = 7}, iterations=0})) (26))
 
 -- Test cases for checkChicken
 testCheckChicken1 = TestCase (assertEqual "for (checkChicken g)," 
