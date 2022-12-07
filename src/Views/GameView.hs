@@ -53,9 +53,11 @@ makeCell :: CrossyRoad -> Int -> Int -> Widget n
 makeCell g r c
   | row (chicken g) == r && col (chicken g) == c = center chickenCell
   | any (\road -> rowNum road == r && layout road !! c == 1) (roads g) = center carCell
+  | any (\road -> rowNum road == r && layout road !! c == 2) (roads g) = center treeCell
   | otherwise                                    = center blankCell
 
-chickenCell, blankCell, carCell:: Widget n
+chickenCell, blankCell, carCell, treeCell:: Widget n
 chickenCell = vBox [ str "🐔" ]
 blankCell = vBox [ str " " ]
 carCell = vBox [ str "🚗" ]
+treeCell = vBox [ str "🌲" ]

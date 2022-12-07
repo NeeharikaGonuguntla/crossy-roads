@@ -105,5 +105,5 @@ removeLast (x:xs) = x:removeLast xs
 checkChicken :: CrossyRoad -> CrossyRoad
 checkChicken g = do
   if any (\road -> (rowNum road == row (chicken g)) && layout road !! col (chicken g) == 1) (roads g)
-    then changeState GameOver (updateMaxScore g)
+    then updateMaxScore (changeState GameOver g)
     else g
