@@ -15,7 +15,7 @@ data CrossyRoad = CrossyRoad { chicken  :: Coord
                              , state    :: State
                              , maxScore :: Int
                              , curScore :: Int
-                             } deriving Show
+                             }
 
 initGame :: Int -> CrossyRoad
 initGame ms = CrossyRoad { chicken  = initCoord

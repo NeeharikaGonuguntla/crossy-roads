@@ -26,6 +26,7 @@ executable crossy-roads
                        Views.PausedView
                        Views.GameOverView
                        Views.ViewHelper
+  build-depends:       QuickCheck
   default-language:    Haskell2010
   ghc-options:       -W -threaded
 

@@ -49,6 +49,9 @@ gameOverControl g ev = case ev of
   T.VtyEvent (V.EvKey V.KEsc _)   -> Brick.halt g
   _                               -> Brick.continue g
 
+setScore :: CrossyRoad -> Int -> CrossyRoad
+setScore g s = g { curScore = s }
+
 resetGame :: CrossyRoad -> CrossyRoad
 resetGame g = g { chicken = initCoord, curScore = 0, roads = [initRoad r | r <- [0..(dim-1)]] }
 
@@ -57,6 +60,12 @@ changeState s g = g { state = s }
 
 move :: (Coord -> Coord) -> CrossyRoad -> CrossyRoad
 move dir  g = updateRoads (g { chicken = dir (chicken g) })
+
+updateTime :: CrossyRoad -> CrossyRoad
+updateTime g = g { roads = [updateRoadTime road | road <- roads g] }
+
+updateRoadTime :: Road -> Road
+updateRoadTime r = r { curTime = (curTime r + 1) `mod` updateRate r }
 
 updateRoads :: CrossyRoad -> CrossyRoad
 updateRoads g = if length (roads g) - row (chicken g) == ((dim `div` 2) + 1)
@@ -73,15 +82,16 @@ updateMaxScore :: CrossyRoad -> CrossyRoad
 updateMaxScore g = g { maxScore = max (maxScore g) (curScore g) }
 
 mainFunction :: CrossyRoad -> CrossyRoad
-mainFunction g = updateScore (checkChicken (moveCar  g))
+mainFunction g = updateScore (checkChicken (moveCar (updateTime g)))
 
 moveCar :: CrossyRoad -> CrossyRoad
 moveCar g = g { roads = [moveCarHelper road | road <- roads g] }
 
 moveCarHelper :: Road -> Road
-moveCarHelper r = if DirLeft == direction r
-                  then r { layout = removeFirst (layout r) ++ [0] }
-                  else r { layout = 0 : removeLast (layout r) }
+moveCarHelper r
+  | curTime r == 0 && DirLeft == direction r = r { layout = removeFirst (layout r) ++ [head (layout r)] }
+  | curTime r == 0 && DirRight == direction r = r { layout = last (layout r) : removeLast (layout r) }
+  | otherwise = r
 
 removeFirst :: [a] -> [a]
 removeFirst [] = []
