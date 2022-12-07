@@ -18,11 +18,11 @@ main = do
   chan <- newBChan 10
   forkIO $ forever $ do
     writeBChan chan Tick
-    threadDelay 100000
+    threadDelay 1000
   let buildVty = V.mkVty V.defaultConfig
   initialVty <- buildVty
-  res <- customMain initialVty buildVty (Just chan) app initGame
-  print res
+  customMain initialVty buildVty (Just chan) app (initGame 0)
+  print "chicken"
 
 app :: App CrossyRoad Tick String
 app = App

@@ -41,6 +41,10 @@ title s = vBox [ str "....@@@@@@@&/.............................................
                , str " "
                , str "Press Enter to start"
                , str "Press Space to pause"
-               , str "Press Esc to quit"
+               , str "Press ← for Left"
+               , str "Press → for Right"
+               , str "Press ↑ for Up"
+               , str "Press ↓ for Down"
+               , str "Press esc to quit"
                , str " "
                , str (printf "High score: %d" s)]
