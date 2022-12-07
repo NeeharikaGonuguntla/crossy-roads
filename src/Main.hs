@@ -21,8 +21,8 @@ main = do
     threadDelay 100000
   let buildVty = V.mkVty V.defaultConfig
   initialVty <- buildVty
-  res <- customMain initialVty buildVty (Just chan) app (initGame 0)
-  print res
+  customMain initialVty buildVty (Just chan) app (initGame 0)
+  print "chicken"
 
 app :: App CrossyRoad Tick String
 app = App

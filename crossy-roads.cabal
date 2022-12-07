@@ -26,7 +26,6 @@ executable crossy-roads
                        Views.PausedView
                        Views.GameOverView
                        Views.ViewHelper
-
   default-language:    Haskell2010
   ghc-options:       -W -threaded
 
